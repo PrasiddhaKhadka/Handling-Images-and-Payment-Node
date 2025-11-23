@@ -1,8 +1,10 @@
 const ProductImageSchema = require('../models/product')
 
 const getProduct = async(req,res)=>{
+    const product = await ProductImageSchema.find({})
     res.status(200).json({
-        msg:'Getting Hello World!'
+        msg:'Success',
+        product:product
     })
 }
 
