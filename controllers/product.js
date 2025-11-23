@@ -1,12 +1,18 @@
+const ProductImageSchema = require('../models/product')
+
 const getProduct = async(req,res)=>{
     res.status(200).json({
-        msg:'Hello World!'
+        msg:'Getting Hello World!'
     })
 }
 
 const postProduct = async(req,res)=>{
+    // const {title,price } = req.body
+
+    const product = await ProductImageSchema.create(req.body)
     res.status(200).json({
-        msg:'Hello World!'
+        msg:'Success',
+        product:product
     })
 }
 

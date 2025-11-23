@@ -4,11 +4,17 @@ const ProductImageSchema = mongoose.Schema({
     title:{
         type:String,
         required:[true,'Please enter the title'],
-        minlength:10,
-        maxlength:50
+    },
+    price:{
+        type:Number,
+        required:[true,'Please Enter the Price'],
+    },
+    image:{
+        type:String,
+        required:true,
     }
 
 })
 
 
-module.exports = mongoose.model('Product',ProductImageSchema)
+module.exports = mongoose.model('ProductImages',ProductImageSchema)

@@ -1,13 +1,16 @@
-const CustomApiError = require('../errors/index')
+const { CustomApiError } = require('../errors')
 
-const errorHandler = (req,res,next)=>{
-    if(err instanceof CustomApiError)
-    {
-        res.status(err.status).json({msg:err.msg})
+const errorHandler = (err, req, res, next) => {
+
+    if (err instanceof CustomApiError) {
+        return res.status(err.statusCode).json({
+            msg: err.message
+        })
     }
-    else{
-        res.status(500).json({msg:err})
-    }
+
+    return res.status(500).json({
+        msg: err.message || "Internal Server Error"
+    })
 }
 
 module.exports = errorHandler
