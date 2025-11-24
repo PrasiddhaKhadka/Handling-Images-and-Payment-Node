@@ -1,6 +1,7 @@
 const path = require('path')
 const CustomApiError = require('../errors')
 const cloudinary = require('cloudinary').v2
+const fs = require('fs')
 
 
 const uploadController = async(req, res) => {
@@ -41,6 +42,8 @@ const uploadControllerCloud = async(req,res)=>{
         folder:'file-upload-node',
     }
 )
+// REMOVING THE IMAGE FROM SERVER TEMP FILE
+    fs.unlinkSync(req.files.image.tempFilePath);
     return res.status(200).json({image:{src: result.secure_url}});
 
 }

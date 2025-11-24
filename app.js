@@ -1,6 +1,8 @@
 require('dotenv').config()
 const express = require('express')
 app = express()
+const sendEmail = require('./controllers/send-email-controller')
+
 
 // FILE UPLOAD 
 const fileUpload = require('express-fileupload')
@@ -23,6 +25,8 @@ app.get('/',(req,res)=>{
     res.status(200).json({msg:'Running File Upload Starter'})
 
 })
+app.get('/send',sendEmail)
+
 //DB CONNECTION
 const connectDb = require('./db/connection-db')
 // ROUTER 
@@ -31,6 +35,9 @@ app.use('/api/v1/',productRouter)
 
 const uploadImageRouter = require('./routes/upload-route')
 app.use('/api/v1/',uploadImageRouter)
+
+
+
 
 app.use(notFoundMiddleWare)
 app.use(errorHandler)
